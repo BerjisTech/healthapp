@@ -5,9 +5,16 @@
 
 import Rails from "@rails/ujs"
 import Turbolinks from "turbolinks"
+import "bootstrap"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
+import toastr from "toastr/toastr"
+
+import "health"
 
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+
+const jQuery = $
+global.toastr = require("toastr")
