@@ -10,11 +10,15 @@ import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 import toastr from "toastr/toastr"
 
-import "health"
-
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
 
 const jQuery = $
 global.toastr = require("toastr")
+
+if (window.location.href.includes('/register')) {
+    require("packs/registrations")
+} else {
+    require("custom")
+}

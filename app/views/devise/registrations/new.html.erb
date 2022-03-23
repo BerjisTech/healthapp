@@ -1,29 +1,56 @@
-<h2>Sign up</h2>
+<div class="row">
+  <div class="col-sm-7 full-height">
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <div class="d-flex flex-column align-items-center justify-content-center full-height">
+        <div class="row">
+          <%= render "devise/shared/error_messages", resource: resource %>
+          <div class="col-sm-10 align-self-center alerts mb-4"></div>
+          <div class="col-sm-10 align-self-center user-set">
+            <div class="input-group form-floating my-2">
+              <%= f.text_field :username, autofocus: true, autocomplete: "email", class: "form-control", placeholder: "Placeholder" %>
+              <%= f.label :username %>
+              <div class="input-group-addon validity d-flex align-items-center justify-content-center"></div>
+            </div>
+          </div>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+          <div class="col-sm-10 align-self-center email-set">
+            <div class="form-floating my-2">
+              <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", placeholder: "Placeholder" %>
+              <%= f.label :email %>
+            </div>
+          </div>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+          <div class="col-sm-10 align-self-center ps-set">
+            <% if @minimum_password_length %>
+              <em>(<%= @minimum_password_length %> characters minimum)</em>
+            <% end %>
+            <div class="form-floating my-2">
+              <%= f.password_field :password, autocomplete: "new-password", class: "form-control", placeholder: "Placeholder" %>
+              <%= f.label :password %>
+            </div>
+          </div>
+
+          <div class="col-sm-10 align-self-center ps-confirm">
+            <div class="form-floating my-2">
+              <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control", placeholder: "Placeholder" %>
+              <%= f.label :password_confirmation %>
+            </div>
+          </div>
+
+          <div class="col-sm-10 align-self-center actions d-flex algin-items-center justify-content-end next_button"></div>
+
+          <div class="col-sm-10 align-self-center actions submit_button">
+            <%= f.submit "Sign up", class: "btn btn-primary btn-lg form-control" %>
+          </div>
+        </div>
+        <%= render "devise/shared/links" %>
+      </div>
+    <% end %>
   </div>
-
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
+  <div class="col-sm-5 full-height">
+    <div class="d-flex align-items-center justify-content-end whole-width">
+      <%= video_tag 'register-email-intro.mp4', autoplay: :autoplay, loop: :loop, muted: :muted, class: "whole-width" %>
+      <span style="background: url(https://miro.medium.com/max/1838/1*_KZKYMI2hlndOSGL02PK9w.gif);"></span>
+    </div>
   </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>
