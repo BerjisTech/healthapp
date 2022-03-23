@@ -9,6 +9,7 @@ import "bootstrap"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 import toastr from "toastr/toastr"
+import 'boxicons'
 
 Rails.start()
 Turbolinks.start()
