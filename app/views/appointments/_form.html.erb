@@ -11,32 +11,32 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :patient_id %>
-    <%= form.text_field :patient_id %>
+  <%= form.hidden_field :patient_id, value: current_user.id %>
+
+  <div class="row bg-white shadow rounded border">
+    <div class="col-sm-6">
+      <div class="form-floating my-2">
+        <%= form.select :doctor_id, options_from_collection_for_select(User.where(user_type: 1), :id, :username), {}, class: "form-control", placeholder: "Placeholder" %>
+        <%= form.label :doctor_id %>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="form-floating my-2">
+        <%= form.date_field :time, class: "form-control", placeholder: "Placeholder" %>
+        <%= form.label :time %>
+      </div>
+    </div>
+    <div class="col-sm-12">
+      <div class="form-group my-2">
+        <%= form.label :reason %>
+        <%= form.rich_text_area :reason, class: "form-control", placeholder: "Placeholder" %>
+      </div>
+    </div>
+    <div class="col-sm-12">
+      <div class="actions">
+        <%= form.submit class: "btn btn-primary" %>
+      </div>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :doctor_id %>
-    <%= form.text_field :doctor_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :reason %>
-    <%= form.text_area :reason %>
-  </div>
-
-  <div class="field">
-    <%= form.label :time %>
-    <%= form.datetime_select :time %>
-  </div>
-
-  <div class="field">
-    <%= form.label :status %>
-    <%= form.number_field :status %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
 <% end %>

@@ -1,141 +1,91 @@
-
+<%- if user_signed_in? %>
   <section id="appointment" class="appointment section-bg">
     <div class="container" daos="fade-up">
       <div class="section-title">
         <h2>Make an Appointment</h2>
         <p>All our doctors are working in government sectors and having a private practice at our clinic, so they are always not at the clinic. SO as not to be disapointed, patients who want to consult with our doctors are encouraged to make an appointment to avoid disapointment at coming to the clinic and not finding the doctor they wanted to consult with. </p>
       </div>
-      <form action="forms/appointment.php" method="post" role="form" class="php-email-form" daos="fade-up" data-aos-delay="100">
-        <div class="row">
-          <div class="col-md-4 form-group"> <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required></div>
-          <div class="col-md-4 form-group mt-3 mt-md-0"> <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required></div>
-          <div class="col-md-4 form-group mt-3 mt-md-0"> <input type="tel" class="form-control" name="phone" id="phone" placeholder="Your Phone" required></div>
-        </div>
-        <div class="row">
-          <div class="col-md-4 form-group mt-3"> <input type="datetime" name="date" class="form-control datepicker" id="date" placeholder="Appointment Date" required></div>
-          <div class="col-md-4 form-group mt-3"> <select name="department" id="department" class="form-select"><option value="">Select Department</option><option value="Department 1">Department 1</option><option value="Department 2">Department 2</option><option value="Department 3">Department 3</option> </select></div>
-          <div class="col-md-4 form-group mt-3"> <select name="doctor" id="doctor" class="form-select"><option value="">Select Doctor</option><option value="Doctor 1">Doctor 1</option><option value="Doctor 2">Doctor 2</option><option value="Doctor 3">Doctor 3</option> </select></div>
-        </div>
-        <div class="form-group mt-3">
-          <textarea class="form-control" name="message" rows="5" placeholder="Message (Optional)"></textarea>
-        </div>
-        <div class="my-3">
-          <div class="loading">Loading</div>
-          <div class="error-message"></div>
-          <div class="sent-message">Your appointment request has been sent successfully. Thank you!</div>
-        </div>
-        <div class="text-center"><button type="submit">Make an Appointment</button></div>
-      </form>
+      <%= render 'appointments/form', appointment: Appointment.new() %>
     </div>
   </section>
-  <section id="departments" class="departments">
-    <div class="container" daos="fade-up">
-      <div class="section-title">
-        <h2>Departments</h2>
-        <p>Our clinic has been divided into departments based on the specializations of the doctors working at the clinic so that patients can consult with a specific doctor on a specific health issue.</p>
+<% end %>
+<section id="departments" class="departments">
+  <div class="container" daos="fade-up">
+    <div class="section-title">
+      <h2>Departments</h2>
+      <p>Our clinic has been divided into departments based on the specializations of the doctors working at the clinic so that patients can consult with a specific doctor on a specific health issue.</p>
+    </div>
+    <div class="row" daos="fade-up" data-aos-delay="100">
+      <div class="col-lg-4 mb-5 mb-lg-0">
+        <ul class="nav nav-tabs flex-column">
+          <li class="nav-item"> <a class="nav-link active show" data-bs-toggle="tab" data-bs-target="#tab-1">
+              <h4>Cardiology</h4>
+              <p> This department deals with consultation of disorders of the heart and the blood vessels</p>
+            </a></li>
+          <li class="nav-item mt-2"> <a class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-2">
+              <h4>Orthopaedics</h4>
+              <p>This department deals with consultation relating with the correction of deformities of bones or muscles</p>
+            </a></li>
+          <li class="nav-item mt-2"> <a class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-3">
+              <h4>Hepatology</h4>
+              <p>This department is concerned with the consultation of diseases that affect the liver, gallbladder, biliary tree, and pancreas. </p>
+            </a></li>
+          <li class="nav-item mt-2"> <a class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-4">
+              <h4>Pediatrics</h4>
+              <p>This department deals with consoultation on the health and medical care of infants, children, and adolescents from birth up to the age of 18</p>
+            </a></li>
+        </ul>
       </div>
-      <div class="row" daos="fade-up" data-aos-delay="100">
-        <div class="col-lg-4 mb-5 mb-lg-0">
-          <ul class="nav nav-tabs flex-column">
-            <li class="nav-item"> <a class="nav-link active show" data-bs-toggle="tab" data-bs-target="#tab-1">
-                <h4>Cardiology</h4>
-                <p> This department deals with consultation of disorders of the heart and the blood vessels</p>
-              </a></li>
-            <li class="nav-item mt-2"> <a class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-2">
-                <h4>Orthopaedics</h4>
-                <p>This department deals with consultation relating with the correction of deformities of bones or muscles</p>
-              </a></li>
-            <li class="nav-item mt-2"> <a class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-3">
-                <h4>Hepatology</h4>
-                <p>This department is concerned with the consultation of diseases that affect the liver, gallbladder, biliary tree, and pancreas. </p>
-              </a></li>
-            <li class="nav-item mt-2"> <a class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-4">
-                <h4>Pediatrics</h4>
-                <p>This department deals with consoultation on the health and medical care of infants, children, and adolescents from birth up to the age of 18</p>
-              </a></li>
-          </ul>
-        </div>
-        <div class="col-lg-8">
-          <div class="tab-content">
-            <div class="tab-pane active show" id="tab-1">
-              <h3>Cardiology</h3>
-              <p class="fst-italic">Consultation of disorders of the heart and the blood vessels</p>
-              <img src="<%= asset_path('departments-1') %>" alt="" class="img-fluid">
-              <p>Cardiology is the study and treatment of disorders of the heart and the blood vessels. A person with heart disease or cardiovascular disease may be referred to a cardiologist. Cardiology is a branch of internal medicine. A cardiologist is not the same as a cardiac surgeon</p>
-            </div>
-            <div class="tab-pane" id="tab-2">
-              <h3>Orthopaedics</h3>
-              <p class="fst-italic">Consultation relating with the correction of deformities of bones or muscles</p>
-              <img src="<%= asset_path('departments-2') %>" alt="" class="img-fluid">
-              <p>Orthopaedics (also called orthopaedic surgery) is the medical specialty that focuses on injuries and diseases of your body's musculoskeletal system. This complex system, which includes your bones, joints, ligaments, tendons, muscles, and nerves, allows you to move, work, and be active</p>
-            </div>
-            <div class="tab-pane" id="tab-3">
-              <h3>Hepatology</h3>
-              <p class="fst-italic">Consultation of diseases that affect the liver, gallbladder, biliary tree, and pancreas.</p>
-              <img src="<%= asset_path('departments-3') %>" alt="" class="img-fluid">
-              <p>Hepatology is a branch of medicine concerned with the study, prevention, diagnosis, and management of diseases that affect the liver, gallbladder, biliary tree, and pancreas. The term hepatology is derived from the Greek words “hepatikos” and “logia,” which mean liver and study, respectively.</p>
-            </div>
-            <div class="tab-pane" id="tab-4">
-              <h3></h3>
-              <p class="fst-italic">Consultation on the health and medical care of infants, children, and adolescents from birth up to the age of 18</p>
-              <img src="<%= asset_path('departments-4') %>" alt="" class="img-fluid">
-              <p>Pediatrics is the branch of medicine dealing with the health and medical care of infants, children, and adolescents from birth up to the age of 18. The word “paediatrics” means “healer of children”; they are derived from two Greek words</p>
-            </div>
+      <div class="col-lg-8">
+        <div class="tab-content">
+          <div class="tab-pane active show" id="tab-1">
+            <h3>Cardiology</h3>
+            <p class="fst-italic">Consultation of disorders of the heart and the blood vessels</p>
+            <img src="<%= asset_path('departments-1') %>" alt="" class="img-fluid">
+            <p>Cardiology is the study and treatment of disorders of the heart and the blood vessels. A person with heart disease or cardiovascular disease may be referred to a cardiologist. Cardiology is a branch of internal medicine. A cardiologist is not the same as a cardiac surgeon</p>
+          </div>
+          <div class="tab-pane" id="tab-2">
+            <h3>Orthopaedics</h3>
+            <p class="fst-italic">Consultation relating with the correction of deformities of bones or muscles</p>
+            <img src="<%= asset_path('departments-2') %>" alt="" class="img-fluid">
+            <p>Orthopaedics (also called orthopaedic surgery) is the medical specialty that focuses on injuries and diseases of your body's musculoskeletal system. This complex system, which includes your bones, joints, ligaments, tendons, muscles, and nerves, allows you to move, work, and be active</p>
+          </div>
+          <div class="tab-pane" id="tab-3">
+            <h3>Hepatology</h3>
+            <p class="fst-italic">Consultation of diseases that affect the liver, gallbladder, biliary tree, and pancreas.</p>
+            <img src="<%= asset_path('departments-3') %>" alt="" class="img-fluid">
+            <p>Hepatology is a branch of medicine concerned with the study, prevention, diagnosis, and management of diseases that affect the liver, gallbladder, biliary tree, and pancreas. The term hepatology is derived from the Greek words “hepatikos” and “logia,” which mean liver and study, respectively.</p>
+          </div>
+          <div class="tab-pane" id="tab-4">
+            <h3></h3>
+            <p class="fst-italic">Consultation on the health and medical care of infants, children, and adolescents from birth up to the age of 18</p>
+            <img src="<%= asset_path('departments-4') %>" alt="" class="img-fluid">
+            <p>Pediatrics is the branch of medicine dealing with the health and medical care of infants, children, and adolescents from birth up to the age of 18. The word “paediatrics” means “healer of children”; they are derived from two Greek words</p>
           </div>
         </div>
       </div>
     </div>
-  </section>
-  <section id="testimonials" class="testimonials">
-    <div class="container" daos="fade-up">
-      <div class="section-title">
-        <h2>Testimonials</h2>
-        <p>What is a testimonial? A testimonial is effectively a review or recommendation from a client, letting other people know how your products or services benefitted them. Customer testimonials can take multiple forms, but the goal is always the same: to showcase how great your brand is</p>
-      </div>
-      <div class="testimonials-slider swiper" daos="fade-up" data-aos-delay="100">
-        <div class="swiper-wrapper">
+  </div>
+</section>
+<section id="testimonials" class="testimonials">
+  <div class="container" daos="fade-up">
+    <div class="section-title">
+      <h2>Testimonials</h2>
+      <p>What is a testimonial? A testimonial is effectively a review or recommendation from a client, letting other people know how your products or services benefitted them. Customer testimonials can take multiple forms, but the goal is always the same: to showcase how great your brand is</p>
+    </div>
+    <div class="testimonials-slider swiper" daos="fade-up" data-aos-delay="100">
+      <div class="swiper-wrapper">
+        <% @testimonials.map do |t| %>
           <div class="swiper-slide">
             <div class="testimonial-item">
-              <p> <i class="bx bxs-quote-alt-left quote-icon-left"></i> What is a testimonial? A testimonial is effectively a review or recommendation from a client, letting other people know how your products or services benefitted them. Customer testimonials can take multiple forms, but the goal is always the same: to showcase how great your brand is <i class="bx bxs-quote-alt-right quote-icon-right"></i></p>
+              <p class="d-flex"> <i class="bx bxs-quote-alt-left quote-icon-left"></i> <%= t.comment %><i class="bx bxs-quote-alt-right quote-icon-right"></i></div>
               <img src="assets/img/testimonials/testimonials-1.jpg" class="testimonial-img" alt="">
-              <h3>Saul Goodman</h3>
-              <h4>Ceo &amp; Founder</h4>
+              <h3><%= t.name %></h3>
             </div>
           </div>
-          <div class="swiper-slide">
-            <div class="testimonial-item">
-              <p> <i class="bx bxs-quote-alt-left quote-icon-left"></i> What is a testimonial? A testimonial is effectively a review or recommendation from a client, letting other people know how your products or services benefitted them. Customer testimonials can take multiple forms, but the goal is always the same: to showcase how great your brand is <i class="bx bxs-quote-alt-right quote-icon-right"></i></p>
-              <img src="assets/img/testimonials/testimonials-2.jpg" class="testimonial-img" alt="">
-              <h3>Sara Wilsson</h3>
-              <h4>Designer</h4>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <div class="testimonial-item">
-              <p> <i class="bx bxs-quote-alt-left quote-icon-left"></i> What is a testimonial? A testimonial is effectively a review or recommendation from a client, letting other people know how your products or services benefitted them. Customer testimonials can take multiple forms, but the goal is always the same: to showcase how great your brand is <i class="bx bxs-quote-alt-right quote-icon-right"></i></p>
-              <img src="assets/img/testimonials/testimonials-3.jpg" class="testimonial-img" alt="">
-              <h3>Jena Karlis</h3>
-              <h4>Store Owner</h4>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <div class="testimonial-item">
-              <p> <i class="bx bxs-quote-alt-left quote-icon-left"></i> What is a testimonial? A testimonial is effectively a review or recommendation from a client, letting other people know how your products or services benefitted them. Customer testimonials can take multiple forms, but the goal is always the same: to showcase how great your brand is <i class="bx bxs-quote-alt-right quote-icon-right"></i></p>
-              <img src="assets/img/testimonials/testimonials-4.jpg" class="testimonial-img" alt="">
-              <h3>Matt Brandon</h3>
-              <h4>Freelancer</h4>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <div class="testimonial-item">
-              <p> <i class="bx bxs-quote-alt-left quote-icon-left"></i> What is a testimonial? A testimonial is effectively a review or recommendation from a client, letting other people know how your products or services benefitted them. Customer testimonials can take multiple forms, but the goal is always the same: to showcase how great your brand is <i class="bx bxs-quote-alt-right quote-icon-right"></i></p>
-              <img src="assets/img/testimonials/testimonials-5.jpg" class="testimonial-img" alt="">
-              <h3>John Larson</h3>
-              <h4>Entrepreneur</h4>
-            </div>
-          </div>
-        </div>
-        <div class="swiper-pagination"></div>
+        <% end %>
       </div>
+      <div class="swiper-pagination"></div>
     </div>
-  </section>
+  </div>
+</section>

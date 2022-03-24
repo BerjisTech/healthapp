@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class TestimonialsController < ApplicationController
-  before_action :set_testimonial, only: %i[ show edit update destroy ]
+  before_action :set_testimonial, only: %i[show edit update destroy]
 
   # GET /testimonials or /testimonials.json
   def index
@@ -7,8 +9,7 @@ class TestimonialsController < ApplicationController
   end
 
   # GET /testimonials/1 or /testimonials/1.json
-  def show
-  end
+  def show; end
 
   # GET /testimonials/new
   def new
@@ -16,8 +17,7 @@ class TestimonialsController < ApplicationController
   end
 
   # GET /testimonials/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /testimonials or /testimonials.json
   def create
@@ -25,7 +25,7 @@ class TestimonialsController < ApplicationController
 
     respond_to do |format|
       if @testimonial.save
-        format.html { redirect_to testimonial_url(@testimonial), notice: "Testimonial was successfully created." }
+        format.html { redirect_to testimonial_url(@testimonial), notice: 'Testimonial was successfully created.' }
         format.json { render :show, status: :created, location: @testimonial }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +38,7 @@ class TestimonialsController < ApplicationController
   def update
     respond_to do |format|
       if @testimonial.update(testimonial_params)
-        format.html { redirect_to testimonial_url(@testimonial), notice: "Testimonial was successfully updated." }
+        format.html { redirect_to testimonial_url(@testimonial), notice: 'Testimonial was successfully updated.' }
         format.json { render :show, status: :ok, location: @testimonial }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -52,19 +52,20 @@ class TestimonialsController < ApplicationController
     @testimonial.destroy
 
     respond_to do |format|
-      format.html { redirect_to testimonials_url, notice: "Testimonial was successfully destroyed." }
+      format.html { redirect_to testimonials_url, notice: 'Testimonial was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_testimonial
-      @testimonial = Testimonial.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def testimonial_params
-      params.require(:testimonial).permit(:name, :comment)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_testimonial
+    @testimonial = Testimonial.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def testimonial_params
+    params.require(:testimonial).permit(:name, :comment)
+  end
 end

@@ -11,17 +11,14 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-  </div>
+    <%= form.hidden_field :name, value: User.find(current_user.id).username || 'Happy customer' %>
 
-  <div class="field">
+  <div class="form-group my-2">
     <%= form.label :comment %>
-    <%= form.text_area :comment %>
+    <%= form.rich_text_area :comment %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit class: "btn btn-lg btn-primary"%>
   </div>
 <% end %>

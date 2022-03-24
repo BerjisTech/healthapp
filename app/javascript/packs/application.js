@@ -10,6 +10,9 @@ import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 import toastr from "toastr/toastr"
 import 'boxicons'
+import "trix"
+import "@rails/actiontext"
+
 
 Rails.start()
 Turbolinks.start()
@@ -23,3 +26,5 @@ if (window.location.href.includes('/register')) {
 } else {
     require("custom")
 }
+require("trix")
+require("@rails/actiontext")
